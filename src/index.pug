@@ -4,9 +4,72 @@ html(lang="en")
         title iDex
         link(rel='stylesheet' href='css/reset.css')
         link(rel='stylesheet' href='css/style.css')
+    block variables
+        -
+            let month = ['Фамилия, Имя','дней', 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек']
+            let i=0
     body
         .github-link
             a(href="https://github.com/dzadranik/i-dex") https://github.com/dzadranik/i-dex
         main.wrapper
+            h1 Рабочий стол руководителя
+            .dashboard
+                button.dashboard__button.active Dashboard
+                button.dashboard__button Team line up
+
+            .vacation__header
+                h2.vacation__header-title График отпусков
+                div
+                    button.vacation__header-button <
+                    span.vacation__header-year 2019
+                    button.vacation__header-button >
+            table.vacation__table
+                thead.vacation__table-header
+                    tr
+                        each el in month
+                            td= el
+                tbody.vacation__table-body
+                    tr 
+                        td
+                            img.avatar(src="https://www.placecage.com/54/54" alt="avatar")
+                            span Aute Consequat
+                        td 14/28
+                        while i<12
+                            td(=i++) 
+                                .month
+                                    .week
+                                        .day
+                                        .day
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                    .week
+                                        .day.day--marine
+                                        .day.day--marine
+                                        .day.day--marine
+                                        .day.day--marine
+                                        .day.day--marine
+                                        .day.day--marine
+                                        .day.day--yellow
+                                    .week
+                                        .day.day--yellow
+                                        .day.day--yellow
+                                        .day.day--yellow
+                                        .day.day--red
+                                        .day.day--red
+                                        .day.day--red
+                                        .day.day--red
+                                    .week
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+                                        .day.day--blue
+
+
 
         script(type='text/javascript' src="js/script.min.js")

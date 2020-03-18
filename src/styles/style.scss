@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$color-blue: #eaf9ff;
+$color-marine: #1ebeb4;
+$color-red: #f16953;
+$color-yellow: #fcc659;
+$color-white: #ffffff;
+$color-default: #232323;
+$color-grey-background: #f7f7f7;
+$color-left-border: #393a3f;
+$color-background-active-button: #556080;
+$color-active-button: #cacaca;
+
+html {
+	height: 100%;
+	overflow: visible;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	color: $color-default;
+	height: 100%;
+}
+
+.github-link {
+	padding: 10px 20px;
+	height: 36px;
+	background: $color-grey-background;
+	a {
+		color: $color-default;
+		text-decoration: none;
+	}
+}
+
+h1 {
+	font-size: 32px;
+	margin: 10px 16px 20px;
+}
+
+.wrapper {
+	width: 1080px;
+	min-height: calc(100% - 36px);
+	padding: 30px 20px;
+	border-left: 100px solid $color-left-border;
+}
+
+.dashboard {
+	padding: 6px 16px;
+	background: $color-grey-background;
+	margin-bottom: 22px;
+	&__button {
+		background: $color-white;
+		border-radius: 2px;
+		font-size: 14px;
+		color: $color-active-button;
+		line-height: 12px;
+		border: none;
+		outline: none;
+		padding: 17px 36px 16px;
+		margin-right: 20px;
+		&.active {
+			background: $color-background-active-button;
+			color: $color-active-button;
+		}
+	}
+}
+
+.vacation {
+	&__header {
+		background: $color-grey-background;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 17px 20px;
+	}
+	&__header-title {
+		font-size: 18px;
+	}
+	&__header-year {
+		font-size: 18px;
+		margin: 0 8px;
+	}
+	&__header-button {
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+	&__table {
+		width: 100%;
+		margin-bottom: 60px
+		tr {
+			border-bottom: 1px solid $color-grey-background;
+		}
+	}
+	&__table-header {
+		background: $color-grey-background;
+		font-size: 10px;
+		text-align: center;
+		td {
+			padding: 1px 0 8px;
+			&:first-child {
+				text-align: left;
+				padding-left: 20px;
+			}
+		}
+	}
+	&__table-body {
+		td {
+			padding: 8px 0;
+			vertical-align: middle;
+		}
+	}
+
+}
+
+.avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+
+.vacation-table {
+	width: 100%;
+}
+.month {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 16px 0;
+}
+.week {
+	display: flex;
+	width: 8px;
+	height: 16px;
+	flex-direction: column;
+	margin: 0 1px;
+}
+.day {
+	width: 100%;
+	height: 100%;
+	&--blue {
+		background: $color-blue;
+	}
+	&--marine {
+		background: $color-marine;
+	}
+	&--red {
+		background: $color-red;
+	}
+	&--yellow {
+		background: $color-yellow;
+	}
+}

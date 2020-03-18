@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+html {
+  height: 100%;
+  overflow: visible; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: #232323;
+  height: 100%; }
+
+.github-link {
+  padding: 10px 20px;
+  height: 36px;
+  background: #f7f7f7; }
+  .github-link a {
+    color: #232323;
+    text-decoration: none; }
+
+h1 {
+  font-size: 32px;
+  margin: 10px 16px 20px; }
+
+.wrapper {
+  width: 1080px;
+  min-height: calc(100% - 36px);
+  padding: 30px 20px;
+  border-left: 100px solid #393a3f; }
+
+.dashboard {
+  padding: 6px 16px;
+  background: #f7f7f7;
+  margin-bottom: 22px; }
+  .dashboard__button {
+    background: #ffffff;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #cacaca;
+    line-height: 12px;
+    border: none;
+    outline: none;
+    padding: 17px 36px 16px;
+    margin-right: 20px; }
+    .dashboard__button.active {
+      background: #556080;
+      color: #cacaca; }
+
+.vacation__header {
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 20px; }
+
+.vacation__header-title {
+  font-size: 18px; }
+
+.vacation__header-year {
+  font-size: 18px;
+  margin: 0 8px; }
+
+.vacation__header-button {
+  background: transparent;
+  border: none;
+  outline: none; }
+
+.vacation__table {
+  width: 100%;
+  margin-bottom: 60px tr;
+    margin-bottom-border-bottom: 1px solid #f7f7f7; }
+
+.vacation__table-header {
+  background: #f7f7f7;
+  font-size: 10px;
+  text-align: center; }
+  .vacation__table-header td {
+    padding: 1px 0 8px; }
+    .vacation__table-header td:first-child {
+      text-align: left;
+      padding-left: 20px; }
+
+.vacation__table-body td {
+  padding: 8px 0;
+  vertical-align: middle; }
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px; }
+
+.vacation-table {
+  width: 100%; }
+
+.month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0; }
+
+.week {
+  display: flex;
+  width: 8px;
+  height: 16px;
+  flex-direction: column;
+  margin: 0 1px; }
+
+.day {
+  width: 100%;
+  height: 100%; }
+  .day--blue {
+    background: #eaf9ff; }
+  .day--marine {
+    background: #1ebeb4; }
+  .day--red {
+    background: #f16953; }
+  .day--yellow {
+    background: #fcc659; }
