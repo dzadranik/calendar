@@ -113,6 +113,10 @@ h1 {
 			&:first-child {
 				text-align: left;
 			}
+			&:nth-child(1),
+			&:nth-child(2) {
+				padding-right: 10px;
+			}
 		}
 	}
 	&__employee-photo {
@@ -152,7 +156,7 @@ h1 {
 		&--old-day {
 			background: $color-blue;
 		}
-		&--marine {
+		&--vacation {
 			background: $color-marine;
 		}
 		&--red {

@@ -86,6 +86,8 @@ h1 {
   vertical-align: middle; }
   .vacation__table-body td:first-child {
     text-align: left; }
+  .vacation__table-body td:nth-child(1), .vacation__table-body td:nth-child(2) {
+    padding-right: 10px; }
 
 .vacation__employee-photo {
   width: 32px;
@@ -120,7 +122,7 @@ h1 {
   background: #eaf9ff; }
   .calendar__day--old-day {
     background: #eaf9ff; }
-  .calendar__day--marine {
+  .calendar__day--vacation {
     background: #1ebeb4; }
   .calendar__day--red {
     background: #f16953; }
