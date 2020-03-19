@@ -1,15 +1,20 @@
-const { returnMonth, returnYear } = Calendar(),
-	{ getEmpoyee } = Employee()
+const { getYear } = Calendar(),
+	{ loadEmployee } = Employee()
 
-getEmpoyee()
+loadEmployee()
 
 function Employee() {
-	const loadEmployee = data => {
+	const getEmployee = data => {
 		addToContainer(getEmployeeContent(data))
 		data.forEach(element => addEventsToCalendar(element))
 	}
 
-	const returnEmployeeContent = data => {
+	const getEmployeeContent = data =>
+		data
+			.map(item => `<tr employee-id="${item.id}"> ${getContentOneEmployee(item) + getYear(item.id)} <tr/>`)
+			.join('')
+
+	const getContentOneEmployee = data => {
 		let { name, img } = data
 		return `<td>
 					<img class="vacation__employee-photo" src="${img}" alt="Employee image" />
@@ -17,108 +22,131 @@ function Employee() {
 				</td>
 				<td>${data.vacationDaysCount}/28</td>`
 	}
-	const getEmployeeContent = data =>
-		data
-			.map(item => `<tr employee-id="${item.id}"> ${returnEmployeeContent(item) + returnYear(item.id)} <tr/>`)
-			.join('')
+
 	const addToContainer = content => {
 		const container = document.querySelector('.js-vacation-table')
 		container.innerHTML = content
 	}
+
 	const addEventsToCalendar = data => {
 		const { id, events } = data
-		events.forEach(event => addEventToCalendar(event, id))
+		events.forEach(event => addEventOneEmployee(event, id))
 	}
 
-	const addEventToCalendar = (data, employeeId) => {
-		const { id, dateStart, dateEnd, name } = data
-		let dateStartArray = dateStart.split('.').map(parseFloat),
-			dateEndArray = dateEnd.split('.').map(parseFloat),
-			start = dateStartArray[0],
-			end = dateEndArray[0]
-		if (dateEndArray[1] == dateStartArray[1]) {
-			for (start; start <= end; start++) {
-				const day = document.querySelector(`[data-day="${start}-${dateEndArray[1] - 1}-${id}"]`)
-				day.classList.add(`calendar__day--${name}`)
+	const addEventOneEmployee = (data, employeeId) => {
+		let { id, dateStart, dateEnd, name } = data,
+			dateStartEvent = dateStart.split('.').map(parseFloat),
+			dateEndEvent = dateEnd.split('.').map(parseFloat),
+			startDay = dateStartEvent[0],
+			startMonth = dateStartEvent[1],
+			endDay = dateEndEvent[0],
+			endMonth = dateEndEvent[1]
+
+		const findDayContainer = (day, month) =>
+			document.querySelector(`[data-day="${day}-${month - 1}-${employeeId}"]`)
+
+		const addEventClass = day => day.classList.add(`calendar__day--${name}`)
+
+		if (startMonth == endMonth) {
+			for (let i = startDay; i <= endDay; i++) {
+				addEventClass(findDayContainer(i, startMonth))
+			}
+		} else {
+			for (let i = startDay; i <= 31; i++) {
+				const dayContainer = findDayContainer(i, startMonth)
+
+				if (dayContainer) {
+					addEventClass(dayContainer)
+				}
+			}
+			for (let i = 1; i <= endDay; i++) {
+				addEventClass(findDayContainer(i, endMonth))
 			}
 		}
 	}
 
 	return {
-		getEmpoyee: () => {
+		loadEmployee: () => {
 			fetch('https://dzadranik.github.io/i-dex/src/js/vacation-calendar.json')
 				.then(response => response.json())
-				.then(data => loadEmployee(data))
+				.then(data => getEmployee(data))
 		}
 	}
 }
 
 function Calendar() {
-	let daysInMonth, firstDay, day, month, employeeId
+	let daysInMonth, firstDay, month, employeeId, day
+	// daysInMonth-количество дней в месяце,
+	// firstDay-день недели первого дня,
+	// month-индекс месяца,
+	// employeeId- id сотрудника,
+	// day- счетчик дней
 
-	const setMonth = month => {
-		let frD
-		daysInMonth = new Date(2020, month + 1, 0).getDate()
-		frD = new Date(2020, month, 1).getDay()
+	const returnOneMonth = m => {
+		day = 1
+		setMonthData(m)
+
+		let monthContain = ''
+		const getWeeks = (i = 0) => {
+			if (day <= daysInMonth) {
+				monthContain += getOneWeek(i)
+				getWeeks(i + 1)
+			}
+		}
+		getWeeks()
+		return `<td>
+					<div class="calendar__month">
+						${monthContain}
+					</div>
+				</td>`
+	}
+
+	const setMonthData = monthIndex => {
+		month = monthIndex
+		daysInMonth = new Date(2020, monthIndex + 1, 0).getDate()
+		let frD = new Date(2020, monthIndex, 1).getDay()
 		frD == 0 ? (firstDay = 6) : (firstDay = frD - 1)
 	}
 
-	const returnDay = dayClass => {
-		let isDay = dayClass == 'calendar__day',
-			days = `<div class="${dayClass}" ${isDay ? `data-day="${day}-${month}-${employeeId}"` : ''}></div>`
-		isDay ? (day = day + 1) : ''
-		return days
-	}
+	const getOneWeek = weekNumber => {
+		let daysContent = '',
+			getDays = (firstDay, i = 0) => {
+				if (i < 7) {
+					if ((firstDay > 0 && weekNumber == 0) || day > daysInMonth) {
+						daysContent += getOneDay('calendar__empty')
+					} else {
+						daysContent += getOneDay('calendar__day')
+					}
 
-	const returnWeek = iteration => {
-		let days = ''
-		let getDays = (firstDay, i = 0) => {
-			if (i < 7) {
-				if ((firstDay > 0 && day && iteration == 0) || day > daysInMonth) {
-					days += returnDay('calendar__empty')
-				} else {
-					days += returnDay('calendar__day')
+					getDays(firstDay - 1, i + 1)
 				}
-
-				getDays(firstDay - 1, i + 1)
 			}
-		}
 		getDays(firstDay)
 		return `<div class="calendar__week">
-					${days}
+					${daysContent}
 				</div>`
 	}
 
-	return {
-		returnMonth: m => {
-			day = 1
-			month = m
-			setMonth(m)
+	const getOneDay = dayClass => {
+		let isEmptyDay = dayClass == 'calendar__empty',
+			dayContent = `<div class="${dayClass}" ${
+				isEmptyDay ? '' : `data-day="${day}-${month}-${employeeId}"`
+			}></div>`
+		isEmptyDay ? '' : (day = day + 1)
+		return dayContent
+	}
 
-			let monthContain = ''
-			const getWeeks = (i = 0) => {
-				if (day <= daysInMonth) {
-					monthContain += returnWeek(i)
-					getWeeks(i + 1)
-				}
-			}
-			getWeeks()
-			return `<td>
-						<div class="calendar__month">
-							${monthContain}
-						</div>
-					</td>`
-		},
-		returnYear: id => {
-			let yearContent = ''
+	return {
+		getYear: id => {
 			employeeId = id
-			const getYear = (i = 0) => {
+			let yearContent = ''
+			const getYearContent = (i = 0) => {
 				if (i < 12) {
-					yearContent += returnMonth(i)
-					getYear(i + 1)
+					yearContent += returnOneMonth(i)
+					getYearContent(i + 1)
 				}
 			}
-			getYear()
+			getYearContent()
 			return yearContent
 		}
 	}
