@@ -5,8 +5,8 @@
 		"img": "https://www.stevensegallery.com/54/54",
 		"vacationDaysCount": "14",
 		"events": [
-			{ "id": 1, "name": "vacation", "dateStart": "15.04.2020", "dateEnd": "30.04.2020" },
-			{ "id": 2, "name": "vacation", "dateStart": "20.09.2020", "dateEnd": "05.10.2020" }
+			{ "id": 1, "name": "vacation", "dateStart": "15.04", "dateEnd": "30.04" },
+			{ "id": 2, "name": "vacation", "dateStart": "20.09", "dateEnd": "05.10" }
 		]
 	},
 	{
@@ -16,7 +16,7 @@
 		"vacationDaysCount": "5",
 		"events": [
 			{ "id": 1, "name": "vacation", "dateStart": "02.05", "dateEnd": "30.05" },
-			{ "id": 2, "name": "vacation", "dateStart": "10.08.2020", "dateEnd": "15.8.2020" }
+			{ "id": 2, "name": "vacation", "dateStart": "10.08", "dateEnd": "15.8" }
 		]
 	}
 ]
