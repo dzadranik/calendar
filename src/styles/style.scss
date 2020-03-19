@@ -88,8 +88,7 @@ h1 {
 	}
 	&__table {
 		width: 100%;
-		margin-bottom: 60px
-		tr {
+		margin-bottom: 60px tr {
 			border-bottom: 1px solid $color-grey-background;
 		}
 	}
@@ -111,45 +110,69 @@ h1 {
 			vertical-align: middle;
 		}
 	}
-
+	&__employee-photo {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		margin-right: 8px;
+	}
+	&__employee-name {
+		display: inline-block;
+		width: 40px;
+	}
 }
 
-.avatar {
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	margin-right: 8px;
+.calendar {
+	&__month {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 16px 0;
+	}
+	&__week {
+		display: flex;
+		width: 8px;
+		height: 16px;
+		flex-direction: column;
+		margin: 0 1px;
+	}
+	&__day {
+		width: 100%;
+		height: 100%;
+		&--blue {
+			background: $color-blue;
+		}
+		&--marine {
+			background: $color-marine;
+		}
+		&--red {
+			background: $color-red;
+		}
+		&--yellow {
+			background: $color-yellow;
+		}
+	}
 }
 
-.vacation-table {
-	width: 100%;
-}
-.month {
+.js-get-month {
+	width: 160px;
+	height: 150px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 16px 0;
-}
-.week {
-	display: flex;
-	width: 8px;
-	height: 16px;
-	flex-direction: column;
-	margin: 0 1px;
-}
-.day {
-	width: 100%;
-	height: 100%;
-	&--blue {
-		background: $color-blue;
+
+	.calendar__month {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 16px 0;
 	}
-	&--marine {
-		background: $color-marine;
+	.calendar__week {
+		display: flex;
+		width: 30px;
+		height: 150px;
+		flex-direction: column;
+		margin: 0 1px;
 	}
-	&--red {
-		background: $color-red;
-	}
-	&--yellow {
-		background: $color-yellow;
+	.calendar__day {
+		text-align: center;
 	}
 }

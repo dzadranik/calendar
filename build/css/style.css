@@ -83,36 +83,55 @@ h1 {
   padding: 8px 0;
   vertical-align: middle; }
 
-.avatar {
+.vacation__employee-photo {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   margin-right: 8px; }
 
-.vacation-table {
-  width: 100%; }
+.vacation__employee-name {
+  display: inline-block;
+  width: 40px; }
 
-.month {
+.calendar__month {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 16px 0; }
 
-.week {
+.calendar__week {
   display: flex;
   width: 8px;
   height: 16px;
   flex-direction: column;
   margin: 0 1px; }
 
-.day {
+.calendar__day {
   width: 100%;
   height: 100%; }
-  .day--blue {
+  .calendar__day--blue {
     background: #eaf9ff; }
-  .day--marine {
+  .calendar__day--marine {
     background: #1ebeb4; }
-  .day--red {
+  .calendar__day--red {
     background: #f16953; }
-  .day--yellow {
+  .calendar__day--yellow {
     background: #fcc659; }
+
+.js-get-month {
+  width: 160px;
+  height: 150px;
+  display: flex; }
+  .js-get-month .calendar__month {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0; }
+  .js-get-month .calendar__week {
+    display: flex;
+    width: 30px;
+    height: 150px;
+    flex-direction: column;
+    margin: 0 1px; }
+  .js-get-month .calendar__day {
+    text-align: center; }
