@@ -16,7 +16,7 @@
 		"vacationDaysCount": "5",
 		"events": [
 			{ "id": 1, "name": "vacation", "dateStart": "10.05", "dateEnd": "22.05" },
-			{ "id": 2, "red": "vacation", "dateStart": "10.08", "dateEnd": "15.8" }
+			{ "id": 2, "name": "red", "dateStart": "10.08", "dateEnd": "15.8" }
 		]
 	},
 	{
@@ -25,7 +25,7 @@
 		"img": "https://www.fillmurray.com/54/54",
 		"vacationDaysCount": "16",
 		"events": [
-			{ "id": 1, "yellow": "vacation", "dateStart": "28.02", "dateEnd": "12.03" },
+			{ "id": 1, "name": "yellow", "dateStart": "28.02", "dateEnd": "12.03" },
 			{ "id": 2, "name": "vacation", "dateStart": "17.12", "dateEnd": "27.12" }
 		]
 	}
