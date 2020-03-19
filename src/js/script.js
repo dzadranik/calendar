@@ -1,13 +1,13 @@
 const { returnMonth } = Calendar()
 
-const container = document.querySelector('.js-get-month ')
-const month = returnMonth(3)
-container.innerHTML = month
+const container = document.querySelector('.js-get-month')
+let month = ''
+for (let i = 0; i < 12; i++) {
+	container.innerHTML += returnMonth(i)
+}
 
 function Calendar() {
-	let daysInMonth,
-		firstDay,
-		day = 1
+	let daysInMonth, firstDay, day
 
 	const setMonth = month => {
 		let frD
@@ -16,11 +16,10 @@ function Calendar() {
 		frD == 0 ? (firstDay = 6) : (firstDay = frD - 1)
 	}
 
-	const returnDay = noDay => {
-		let days = `<div class="calendar__day ${noDay || day > daysInMonth ? '' : 'calendar__day--blue'}">${
-			noDay || day > daysInMonth ? '' : day
-		}</div>`
-		noDay ? '' : (day = day + 1)
+	const returnDay = dayClass => {
+		let isDay = dayClass == 'calendar__day',
+			days = `<div class="${dayClass}">${isDay ? day : ''}</div>`
+		isDay ? (day = day + 1) : ''
 		return days
 	}
 
@@ -28,10 +27,10 @@ function Calendar() {
 		let days = ''
 		let getDays = (firstDay, i = 0) => {
 			if (i < 7) {
-				if (firstDay > 0 && iteration == 0) {
-					days += returnDay('true')
+				if ((firstDay > 0 && day && iteration == 0) || day > daysInMonth) {
+					days += returnDay('calendar__empty')
 				} else {
-					days += returnDay()
+					days += returnDay('calendar__day')
 				}
 
 				getDays(firstDay - 1, i + 1)
@@ -45,17 +44,18 @@ function Calendar() {
 
 	return {
 		returnMonth: m => {
+			day = 1
 			setMonth(m)
 
 			let monthContain = ''
 			const getWeeks = (i = 0) => {
-				if (day < daysInMonth) {
+				if (day <= daysInMonth) {
 					monthContain += returnWeek(i)
 					getWeeks(i + 1)
 				}
 			}
 			getWeeks()
-			return `<div data-month="${m}" class="calendar__month">
+			return `<div calendar-month="${m}" class="calendar__month">
 						${monthContain}
 					</div>`
 		}

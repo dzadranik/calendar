@@ -31,24 +31,24 @@ html(lang="en")
                 tbody.vacation__table-body
                     tr 
                         td
-                            img.vacation__employee-photo(src="https://www.placecage.com/54/54" alt="avatar")
+                            img.vacation__employee-photo(src="https://www.placecage.com/c/54/54" alt="Employee image")
                             .vacation__employee-name Aute Consequat
                         td 14/28
                         while i<12
                             td(=i++) 
                                 .calendar__month
                                     .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
                                         .calendar__day
                                         .calendar__day
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
                                     .calendar__week
-                                        .calendar__day.calendar__day--marine
-                                        .calendar__day.calendar__day--marine
-                                        .calendar__day.calendar__day--marine
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
                                         .calendar__day.calendar__day--marine
                                         .calendar__day.calendar__day--marine
                                         .calendar__day.calendar__day--marine
@@ -62,16 +62,20 @@ html(lang="en")
                                         .calendar__day.calendar__day--red
                                         .calendar__day.calendar__day--red
                                     .calendar__week
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-                                        .calendar__day.calendar__day--blue
-
-            .js-get-month 
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
 
 
+            table.vacation__table
+                thead.vacation__table-header
+                    tr
+                        each el in month
+                            td= el
+                tbody.vacation__table-body.js-vacation-table
 
         script(type='text/javascript' src="js/script.min.js")
