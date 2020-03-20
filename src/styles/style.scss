@@ -5,6 +5,7 @@ $color-marine: #1ebeb4;
 $color-red: #f16953;
 $color-yellow: #fcc659;
 $color-white: #ffffff;
+$color-black: #000000;
 $color-default: #232323;
 $color-grey-background: #f7f7f7;
 $color-left-border: #393a3f;
@@ -137,6 +138,12 @@ h1 {
 		justify-content: center;
 		align-items: center;
 		margin: 16px 0;
+		position: relative;
+		&:hover {
+			.calendar-event {
+				display: block;
+			}
+		}
 	}
 	&__week {
 		display: flex;
@@ -168,25 +175,57 @@ h1 {
 	}
 }
 
-.js-get-month {
-	width: 160px;
-	height: 150px;
-	display: flex;
-
-	.calendar__month {
+.calendar-event {
+	position: absolute;
+	padding: 17px;
+	box-shadow: 0 0 4px 0 rgba(107, 107, 107, 0.5);
+	border-radius: 4px;
+	background: $color-white;
+	width: 345px;
+	height: 146px;
+	z-index: 9;
+	text-align: left;
+	top: 120%;
+	left: 70%;
+	display: none;
+	&__employee {
 		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin: 16px 0;
+		align-items: flex-start;
+		margin-bottom: 17px;
 	}
-	.calendar__week {
-		display: flex;
-		width: 30px;
-		height: 150px;
-		flex-direction: column;
-		margin: 0 1px;
+	&__employee-photo {
+		width: 54px;
+		height: 54px;
+		border-radius: 50%;
+		margin-right: 16px;
 	}
-	.calendar__day {
-		text-align: center;
+	&__employee-name {
+		font-size: 14px;
+		font-weight: bold;
+		color: $color-black;
+		width: 60px;
+	}
+	&__date {
+		color: $color-black;
+		font-size: 14px;
+		border-left: 12px solid $color-white;
+		padding-left: 8px;
+		height: 16px;
+		line-height: 16px;
+		margin-bottom: 2px;
+		&--vacation {
+			border-left-color: $color-marine;
+		}
+		&--red {
+			border-left-color: $color-red;
+		}
+		&--yellow {
+			border-left-color: $color-yellow;
+		}
+	}
+	&__name {
+		font-size: 14px;
+		color: #aeaeae;
+		padding-left: 20px;
 	}
 }

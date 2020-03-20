@@ -34,7 +34,48 @@ html(lang="en")
                             img.vacation__employee-photo(src="https://www.placecage.com/c/54/54" alt="Employee image")
                             .vacation__employee-name Aute Consequat
                         td 14/28
-                        while i<12
+                            td
+                                .calendar__month
+                                    .calendar-event
+                                        .calendar-event__employee
+                                            img.calendar-event__employee-photo(src="https://www.placecage.com/c/54/54" alt="Employee image")
+                                            .calendar-event__employee-name Aute Consequat
+                                        .calendar-event__information
+                                            .calendar-event__date.calendar-event__date--vacation 09.08.2019 — 23.08.2019 (14д.)
+                                            .calendar-event__name отпуск
+                                    .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__day
+                                        .calendar__day.calendar__day--vacation
+                                        .calendar__day.calendar__day--vacation
+                                        .calendar__day.calendar__day--vacation
+                                        .calendar__day.calendar__day--vacation
+                                    .calendar__week
+                                        .calendar__day.calendar__day--vacation
+                                        .calendar__day.calendar__day--vacation
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    .calendar__week
+                                        .calendar__day.calendar__day--yellow
+                                        .calendar__day.calendar__day--yellow
+                                        .calendar__day.calendar__day--yellow
+                                        .calendar__day.calendar__day--yellow
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day.calendar__day--red
+                                        .calendar__day.calendar__day--red
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__empty
+                        while i<11
                             td(=i++) 
                                 .calendar__month
                                     .calendar__week

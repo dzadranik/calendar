@@ -1,17 +1,34 @@
-const { getYear } = Calendar(),
-	{ loadEmployee } = Employee()
+const { loadEmployee, loadEventInformation } = Employee(),
+	{ getYear } = Calendar()
+
+const eventContainer = document.querySelector('.js-vacation-table')
+eventContainer.addEventListener('mouseover', event => {
+	if (
+		event.target.hasAttribute('data-event-id') &&
+		event.target.hasAttribute('data-event-id') !== event.relatedTarget.hasAttribute('data-event-id')
+	)
+		loadEventInformation(event.target.getAttribute('data-event-id'))
+})
+eventContainer.addEventListener('mouseover', event => {
+	if (event.relatedTarget.hasAttribute('data-event-id') && !event.target.hasAttribute('data-event-id')) {
+		document.querySelector('.js-vacation-table .calendar-event').remove()
+	}
+})
 
 loadEmployee()
 
 function Employee() {
+	let employeeData = []
+
 	const getEmployee = data => {
-		addToContainer(getEmployeeContent(data))
+		employeeData = data
+		addToContainer(getEmployeeContent(data), '.js-vacation-table')
 		data.forEach(element => addEventsToCalendar(element))
 	}
 
 	const getEmployeeContent = data =>
 		data
-			.map(item => `<tr employee-id="${item.id}"> ${getContentOneEmployee(item) + getYear(item.id)} <tr/>`)
+			.map(item => `<tr employee-id="${item.id}"> ${getContentOneEmployee(item) + getYear(item.id)} </tr>`)
 			.join('')
 
 	const getContentOneEmployee = data => {
@@ -23,17 +40,17 @@ function Employee() {
 				<td>${data.vacationDaysCount}/28</td>`
 	}
 
-	const addToContainer = content => {
-		const container = document.querySelector('.js-vacation-table')
-		container.innerHTML = content
+	const addToContainer = (content, containerSelector) => {
+		const container = document.querySelector(containerSelector)
+		container.innerHTML += content
 	}
 
 	const addEventsToCalendar = data => {
 		const { id, events } = data
-		events.forEach(event => addEventOneEmployee(event, id))
+		events.forEach(event => addOneEventOneEmployee(event, id))
 	}
 
-	const addEventOneEmployee = (data, employeeId) => {
+	const addOneEventOneEmployee = (data, employeeId) => {
 		let { id, dateStart, dateEnd, name } = data,
 			dateStartEvent = dateStart.split('.').map(parseFloat),
 			dateEndEvent = dateEnd.split('.').map(parseFloat),
@@ -45,24 +62,44 @@ function Employee() {
 		const findDayContainer = (day, month) =>
 			document.querySelector(`[data-day="${day}-${month - 1}-${employeeId}"]`)
 
-		const addEventClass = day => day.classList.add(`calendar__day--${name}`)
+		const addEventClassAndEventId = (dayContainer, month) => {
+			dayContainer.classList.add(`calendar__day--${name}`)
+			dayContainer.setAttribute('data-event-id', `${employeeId}-${id}-${month}`)
+		}
 
-		if (startMonth == endMonth) {
+		if (startMonth === endMonth) {
 			for (let i = startDay; i <= endDay; i++) {
-				addEventClass(findDayContainer(i, startMonth))
+				addEventClassAndEventId(findDayContainer(i, startMonth), startMonth - 1)
 			}
 		} else {
 			for (let i = startDay; i <= 31; i++) {
 				const dayContainer = findDayContainer(i, startMonth)
 
 				if (dayContainer) {
-					addEventClass(dayContainer)
+					addEventClassAndEventId(dayContainer, startMonth - 1)
 				}
 			}
 			for (let i = 1; i <= endDay; i++) {
-				addEventClass(findDayContainer(i, endMonth))
+				addEventClassAndEventId(findDayContainer(i, endMonth), endMonth - 1)
 			}
 		}
+	}
+
+	const getCalendarEvent = (employeeInformation, eventInformation) => {
+		const { name, img } = employeeInformation,
+			{ name: eventName, dateStart, dateEnd } = eventInformation
+		return `<div class="calendar-event">
+					<div class="calendar-event__employee">
+						<img class="calendar-event__employee-photo" src="${img}" alt="Employee image">
+						<div class="calendar-event__employee-name">${name}</div>
+					</div>
+					<div class="calendar-event__information">
+						<div class="calendar-event__date calendar-event__date--${eventName}">
+							${dateStart}.2020 — ${dateEnd}.2020 (14д.)
+						</div>
+						<div class="calendar-event__name">отпуск</div>
+					</div>
+				</div>`
 	}
 
 	return {
@@ -70,6 +107,15 @@ function Employee() {
 			fetch('https://dzadranik.github.io/i-dex/src/js/vacation-calendar.json')
 				.then(response => response.json())
 				.then(data => getEmployee(data))
+		},
+		loadEventInformation: eventId => {
+			let eventData = eventId.split('-').map(parseFloat)
+			let employeeInformation = employeeData.find(item => item.id === eventData[0]),
+				eventInformation = employeeInformation.events.find(event => event.id === eventData[1])
+			addToContainer(
+				getCalendarEvent(employeeInformation, eventInformation),
+				`.js-month-${employeeInformation.id}-${eventData[2]}`
+			)
 		}
 	}
 }
@@ -95,7 +141,7 @@ function Calendar() {
 		}
 		getWeeks()
 		return `<td>
-					<div class="calendar__month">
+					<div class="calendar__month js-month-${employeeId}-${m}">
 						${monthContain}
 					</div>
 				</td>`
@@ -105,14 +151,14 @@ function Calendar() {
 		month = monthIndex
 		daysInMonth = new Date(2020, monthIndex + 1, 0).getDate()
 		let frD = new Date(2020, monthIndex, 1).getDay()
-		frD == 0 ? (firstDay = 6) : (firstDay = frD - 1)
+		frD === 0 ? (firstDay = 6) : (firstDay = frD - 1)
 	}
 
 	const getOneWeek = weekNumber => {
 		let daysContent = '',
 			getDays = (firstDay, i = 0) => {
 				if (i < 7) {
-					if ((firstDay > 0 && weekNumber == 0) || day > daysInMonth) {
+					if ((firstDay > 0 && weekNumber === 0) || day > daysInMonth) {
 						daysContent += getOneDay('calendar__empty')
 					} else {
 						daysContent += getOneDay('calendar__day')
@@ -128,7 +174,7 @@ function Calendar() {
 	}
 
 	const getOneDay = dayClass => {
-		let isEmptyDay = dayClass == 'calendar__empty',
+		let isEmptyDay = dayClass === 'calendar__empty',
 			dayContent = `<div class="${dayClass}" ${
 				isEmptyDay ? '' : `data-day="${day}-${month}-${employeeId}"`
 			}></div>`
