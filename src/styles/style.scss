@@ -73,14 +73,14 @@ h1 {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 17px 20px 11px;
+		padding: 17px 5px 11px 20px;
 	}
 	&__header-title {
 		font-size: 18px;
 	}
 	&__header-year {
 		font-size: 18px;
-		margin: 0 8px;
+		margin: 0 11px;
 	}
 	&__header-button {
 		background: transparent;
@@ -109,7 +109,7 @@ h1 {
 	}
 	&__table-body {
 		td {
-			padding: 8px 0;
+			padding: 0;
 			vertical-align: middle;
 			&:first-child {
 				text-align: left;
@@ -185,8 +185,8 @@ h1 {
 	height: 146px;
 	z-index: 9;
 	text-align: left;
-	top: 120%;
-	left: 70%;
+	top: calc(100% + 5px);
+	left: calc(100% - 20px);
 	display: none;
 	&__employee {
 		display: flex;
