@@ -2,13 +2,12 @@ doctype html
 html(lang="en")
     head
         title iDex
-        link(rel='stylesheet' href='/build/css/styles.css')
+        link(rel='stylesheet' href='../../css/styles.css')
     body
         .github-link
             a(href="https://github.com/dzadranik/i-dex") https://github.com/dzadranik/i-dex
-            a(href="/build/") Index
-            a(href="/build/pages/js/index.html") Js load
-            a(href="/build/pages/vue/index.html") Vue
+            a(href="../../") Index
+            a(href="../js/index.html") Js load
         main.wrapper#app
             h1 {{headerTitle}}
             .dashboard
@@ -49,4 +48,4 @@ html(lang="en")
                 tbody.vacation__table-body.js-vacation-table
 
         script(type='text/javascript' src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
-        script(type='text/javascript' src="/build/pages/vue/script.min.js")
+        script(type='text/javascript' src="script.min.js")

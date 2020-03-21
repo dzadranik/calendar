@@ -151,7 +151,7 @@ function Employee() {
 
 	return {
 		loadEmployee: () => {
-			fetch('https://dzadranik.github.io/i-dex/src/js/vacation-calendar.json')
+			fetch('https://dzadranik.github.io/i-dex/src/json/vacation-calendar.json')
 				.then(response => response.json())
 				.then(employees => {
 					displayEmployees(employees)

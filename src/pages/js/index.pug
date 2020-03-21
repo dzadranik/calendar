@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
     head
         title iDex
-        link(rel='stylesheet' href='/build/css/styles.css')
+        link(rel='stylesheet' href='../../css/styles.css')
     block variables
         -
             let month = ['Фамилия, Имя','дней', 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек']
@@ -10,9 +10,8 @@ html(lang="en")
     body
         .github-link
             a(href="https://github.com/dzadranik/i-dex") https://github.com/dzadranik/i-dex
-            a(href="/build/") Index
-            a(href="/build/pages/js/index.html") Js load
-            a(href="/build/pages/vue/index.html") Vue
+            a(href="../../") Index
+            a(href="../vue/index.html") Vue
         main.wrapper
             h1 Рабочий стол руководителя
             .dashboard
@@ -53,4 +52,4 @@ html(lang="en")
                             td= el
                 tbody.vacation__table-body.js-vacation-table
 
-        script(type='text/javascript' src="/build/pages/js/script.min.js")
+        script(type='text/javascript' src="script.min.js")
