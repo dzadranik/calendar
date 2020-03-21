@@ -139,7 +139,7 @@ function Employee() {
 }
 
 function Calendar() {
-	let daysInMonth, firstDay, month, employeeId, day
+	let daysInMonth, firstDay, month, employeeId, day, today, todayMonth
 	// daysInMonth-количество дней в месяце,
 	// firstDay-день недели первого дня,
 	// month-индекс месяца,
@@ -151,6 +151,9 @@ function Calendar() {
 	}
 
 	const setMonthInformation = monthIndex => {
+		let todayDate = new Date()
+		today = todayDate.getDate()
+		todayMonth = todayDate.getMonth()
 		month = monthIndex
 		daysInMonth = new Date(2020, monthIndex + 1, 0).getDate()
 		let frD = new Date(2020, monthIndex, 1).getDay()
@@ -205,11 +208,24 @@ function Calendar() {
 		return daysContent
 	}
 
+	const getIsLastDay = () => {
+		if (todayMonth < month) {
+			return false
+		}
+		if (todayMonth === month) {
+			return day < today
+		}
+		return true
+	}
+
 	const getOneDay = dayClass => {
-		let isEmptyDay = dayClass === 'calendar__empty'
+		let isEmptyDay = dayClass === 'calendar__empty',
+			isLastDay = getIsLastDay()
 		!isEmptyDay ? day++ : ''
 		//чтобы не вводить лишнюю переменную сначала прибавить день, а в формировании класса его вычесть
-		return `<div class="${dayClass} ${!isEmptyDay ? `js-day-${day - 1}-${month}-${employeeId}` : ``}" ></div>`
+		return `<div class="${dayClass} ${!isEmptyDay ? `js-day-${day - 1}-${month}-${employeeId}` : ``} ${
+			isLastDay && !isEmptyDay ? 'calendar__day--last' : ''
+		}" ></div>`
 	}
 
 	return {
