@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+    head
+        title iDex
+        link(rel='stylesheet' href='/css/styles.css')
+    block variables
+        -
+            let month = ['Фамилия, Имя','дней', 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек']
+            let i=0
+    body
+        .github-link
+            a(href="https://github.com/dzadranik/i-dex") https://github.com/dzadranik/i-dex
+            a(href="/") Index
+            a(href="/pages/js/index.html") Js load
+            a(href="/pages/vue/index.html") Vue
+        main.wrapper
+            h1 Рабочий стол руководителя
+            .dashboard
+                button.dashboard__button.active Dashboard
+                button.dashboard__button Team line up
+
+            .vacation__header
+                h2.vacation__header-title График отпусков
+                div
+                    button.vacation__header-button 
+                        <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Head-dashboard-1368" transform="translate(-960.000000, -273.000000)">
+                                    <g id="ic-left" transform="translate(952.000000, 267.000000)">
+                                        <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                                        <path d="M14.71,6.71 C14.32,6.32 13.69,6.32 13.3,6.71 L8.71,11.3 C8.32,11.69 8.32,12.32 8.71,12.71 L13.3,17.3 C13.69,17.69 14.32,17.69 14.71,17.3 C15.1,16.91 15.1,16.28 14.71,15.89 L10.83,12 L14.71,8.12 C15.1,7.73 15.09,7.09 14.71,6.71 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    span.vacation__header-year 2019
+                    button.vacation__header-button 
+                        <svg width="7px" height="12px" viewBox="0 0 7 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Head-dashboard-1368" transform="translate(-1043.000000, -273.000000)">
+                                    <g id="ic-right" transform="translate(1034.000000, 267.000000)">
+                                        <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                                        <path d="M9.29,6.71 C8.9,7.1 8.9,7.73 9.29,8.12 L13.17,12 L9.29,15.88 C8.9,16.27 8.9,16.9 9.29,17.29 C9.68,17.68 10.31,17.68 10.7,17.29 L15.29,12.7 C15.68,12.31 15.68,11.68 15.29,11.29 L10.7,6.7 C10.32,6.32 9.68,6.32 9.29,6.71 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+
+            table.vacation__table
+                thead.vacation__table-header
+                    tr
+                        each el in month
+                            td= el
+                tbody.vacation__table-body.js-vacation-table
+
+        script(type='text/javascript' src="/pages/js/script.min.js")

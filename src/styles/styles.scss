@@ -1,9 +1,11 @@
+@import 'reset';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-$color-blue: #eaf9ff;
-$color-marine: #1ebeb4;
-$color-red: #f16953;
-$color-yellow: #fcc659;
+$color-free-event: #eaf9ff;
+$color-vacation-event: #1ebeb4;
+$color-red-event: #f16953;
+$color-yellow-event: #fcc659;
+$color-last-day: #f6f6f6;
 $color-white: #ffffff;
 $color-black: #000000;
 $color-default: #232323;
@@ -31,6 +33,7 @@ body {
 	a {
 		color: $color-default;
 		text-decoration: none;
+		margin-right: 20px;
 	}
 }
 
@@ -159,18 +162,18 @@ h1 {
 	&__day {
 		width: 100%;
 		height: 100%;
-		background: $color-blue;
-		&--old-day {
-			background: $color-blue;
+		background: $color-free-event;
+		&--last {
+			background: $color-last-day;
 		}
 		&--vacation {
-			background: $color-marine;
+			background: $color-vacation-event;
 		}
 		&--red {
-			background: $color-red;
+			background: $color-red-event;
 		}
 		&--yellow {
-			background: $color-yellow;
+			background: $color-yellow-event;
 		}
 	}
 }
@@ -214,13 +217,13 @@ h1 {
 		line-height: 16px;
 		margin-bottom: 2px;
 		&--vacation {
-			border-left-color: $color-marine;
+			border-left-color: $color-vacation-event;
 		}
 		&--red {
-			border-left-color: $color-red;
+			border-left-color: $color-red-event;
 		}
 		&--yellow {
-			border-left-color: $color-yellow;
+			border-left-color: $color-yellow-event;
 		}
 	}
 	&__name {

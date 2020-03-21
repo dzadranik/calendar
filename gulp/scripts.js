@@ -6,7 +6,7 @@ const rename = require('gulp-rename')
 const sourcemaps = require('gulp-sourcemaps')
 
 module.exports = function scripts(cb) {
-	gulp.src('./src/js/**.js')
+	gulp.src('./src/**/**.js')
 		.pipe(gulpEslint())
 		.pipe(gulpEslint.format())
 		.pipe(sourcemaps.init())
@@ -14,6 +14,6 @@ module.exports = function scripts(cb) {
 		.pipe(terser())
 		.pipe(sourcemaps.write())
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('./build/js'))
+		.pipe(gulp.dest(['./build']))
 	return cb()
 }

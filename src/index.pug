@@ -2,15 +2,17 @@ doctype html
 html(lang="en")
     head
         title iDex
-        link(rel='stylesheet' href='css/reset.css')
-        link(rel='stylesheet' href='css/style.css')
+        link(rel='stylesheet' href='/css/styles.css')
     block variables
-        -
+        -   
+            let m, w, d
             let month = ['Фамилия, Имя','дней', 'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сент', 'Окт', 'Ноя', 'Дек']
-            let i=0
     body
         .github-link
             a(href="https://github.com/dzadranik/i-dex") https://github.com/dzadranik/i-dex
+            a(href="/") Index
+            a(href="/pages/js/index.html") Js load
+            a(href="/pages/vue/index.html") Vue
         main.wrapper
             h1 Рабочий стол руководителя
             .dashboard
@@ -54,89 +56,328 @@ html(lang="en")
                             img.vacation__employee-photo(src="https://www.placecage.com/c/54/54" alt="Employee image")
                             .vacation__employee-name Aute Consequat
                         td 14/28
-                            td
+                        - i=0
+                        while i<3
+                            td(=i++) 
                                 .calendar__month
-                                    .calendar-event
-                                        .calendar-event__employee
-                                            img.calendar-event__employee-photo(src="https://www.placecage.com/c/54/54" alt="Employee image")
-                                            .calendar-event__employee-name Aute Consequat
-                                        .calendar-event__information
-                                            .calendar-event__date.calendar-event__date--vacation 09.08.2019 — 23.08.2019 (14д.)
-                                            .calendar-event__name отпуск
                                     .calendar__week
                                         .calendar__empty
                                         .calendar__empty
-                                        .calendar__day
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
+                                        .calendar__empty.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                    - w=0
+                                    while w<3
+                                        .calendar__week(=w++)
+                                            - d=0
+                                            while d<7 
+                                                .calendar__day.calendar__day--last(=d++)
                                     .calendar__week
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
-                                    .calendar__week
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
-                                    .calendar__week
-                                        .calendar__day
-                                        .calendar__day.calendar__day--red
-                                        .calendar__day.calendar__day--red
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
                                         .calendar__empty
-                        while i<11
+                                        .calendar__empty
+                                        .calendar__empty
+                        td
+                            .calendar__month
+                                include includes/calendar-event.pug
+                                .calendar__week
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__day
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                .calendar__week
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__empty
+                        - i=0
+                        while i<5
                             td(=i++) 
                                 .calendar__month
                                     .calendar__week
                                         .calendar__empty
                                         .calendar__empty
                                         .calendar__day
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
-                                    .calendar__week
-                                        .calendar__day.calendar__day--vacation
-                                        .calendar__day.calendar__day--vacation
                                         .calendar__day
                                         .calendar__day
                                         .calendar__day
                                         .calendar__day
-                                        .calendar__day
-                                    .calendar__week
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day.calendar__day--yellow
-                                        .calendar__day
-                                        .calendar__day
-                                        .calendar__day
+                                    - w=0
+                                    while w<2
+                                        .calendar__week(=w++)
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
                                     .calendar__week
                                         .calendar__day
-                                        .calendar__day.calendar__day--red
-                                        .calendar__day.calendar__day--red
+                                        .calendar__day
+                                        .calendar__day
                                         .calendar__day
                                         .calendar__day
                                         .calendar__day
                                         .calendar__empty
-
-
-            table.vacation__table
-                thead.vacation__table-header
-                    tr
-                        each el in month
-                            td= el
-                tbody.vacation__table-body.js-vacation-table
-
-        script(type='text/javascript' src="js/script.min.js")
+                        td
+                            .calendar__month
+                                include includes/calendar-event.pug
+                                .calendar__week
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day.calendar__day--yellow
+                                    .calendar__day.calendar__day--yellow
+                                    .calendar__day.calendar__day--yellow
+                                    .calendar__day.calendar__day--yellow
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                - w=0
+                                while w<2
+                                    .calendar__week(=w++)
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                        - i=0
+                        while i<2
+                            td(=i++) 
+                                .calendar__month
+                                    .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__empty
+                    tr 
+                        td
+                            img.vacation__employee-photo(src="https://www.fillmurray.com/54/54" alt="Employee image")
+                            .vacation__employee-name Ullamco Excepteur
+                        td 14/28
+                        - i=0
+                        while i<3
+                            td(=i++) 
+                                .calendar__month
+                                    .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__empty.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                    - w=0
+                                    while w<3
+                                        .calendar__week(=w++)
+                                            - d=0
+                                            while d<7 
+                                                .calendar__day.calendar__day--last(=d++)
+                                    .calendar__week
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__day.calendar__day--last
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__empty
+                        - i=0
+                        while i<2
+                            td(=i++) 
+                                .calendar__month
+                                    .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    - w=0
+                                    while w<2
+                                        .calendar__week(=w++)
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__empty
+                        td
+                            .calendar__month
+                                include includes/calendar-event.pug
+                                .calendar__week
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day.calendar__day--red
+                                    .calendar__day.calendar__day--red
+                                    .calendar__day.calendar__day--red
+                                    .calendar__day.calendar__day--red
+                                    .calendar__day.calendar__day--red
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__empty
+                                    .calendar__empty                        
+                        td
+                            .calendar__month
+                                include includes/calendar-event.pug
+                                .calendar__week
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                .calendar__week
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day.calendar__day--vacation
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__day
+                                .calendar__week
+                                    .calendar__day
+                                    .calendar__day
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                                    .calendar__empty
+                        - i=0
+                        while i<5
+                            td(=i++) 
+                                .calendar__month
+                                    .calendar__week
+                                        .calendar__empty
+                                        .calendar__empty
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                    - w=0
+                                    while w<2
+                                        .calendar__week(=w++)
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                            .calendar__day
+                                    .calendar__week
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__day
+                                        .calendar__empty
