@@ -7,7 +7,7 @@ var browserSync = require('browser-sync').create()
 
 module.exports = function server(cb) {
 	browserSync.init({
-		server: 'build',
+		server: '.',
 		open: false
 	})
 
