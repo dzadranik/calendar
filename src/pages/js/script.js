@@ -1,22 +1,3 @@
-const { loadEmployee, displayEventInformation } = Employee(),
-	{ getYear } = Calendar()
-
-window.addEventListener('load', () => {
-	const eventContainer = document.querySelector('.js-vacation-table')
-
-	eventContainer.addEventListener('mouseover', event => {
-		if (event.target.dataset.eventId && event.target.dataset.eventId !== event.relatedTarget.dataset.eventId)
-			displayEventInformation(event.target.dataset.eventId)
-	})
-	eventContainer.addEventListener('mouseover', event => {
-		//event.relatedTarget проверка чтобы при движении из консоли не вылетала ошибка
-		if (event.relatedTarget && event.relatedTarget.dataset.eventId && !event.target.dataset.eventId) {
-			document.querySelector('.js-vacation-table .calendar-event').remove()
-		}
-	})
-})
-loadEmployee()
-
 function Employee() {
 	let employeesArray = []
 
@@ -31,7 +12,7 @@ function Employee() {
 	}
 
 	const getEmployeesContent = () =>
-		employeesArray.map(item => `<tr> ${getContentOneEmployee(item) + getYear(item.id)} </tr>`).join('')
+		employeesArray.map(item => `<tr> ${getContentOneEmployee(item) + calendar.getYear(item.id)} </tr>`).join('')
 
 	const getContentOneEmployee = employee => {
 		let { name, img, vacationDaysCount } = employee
@@ -235,3 +216,20 @@ function Calendar() {
 		}
 	}
 }
+
+const employee = new Employee(),
+	calendar = new Calendar()
+
+window.addEventListener('load', () => {
+	const eventContainer = document.querySelector('.js-vacation-table')
+
+	eventContainer.addEventListener('mouseover', event => {
+		if (event.target.dataset.eventId && event.target.dataset.eventId !== event.relatedTarget.dataset.eventId)
+			employee.displayEventInformation(event.target.dataset.eventId)
+		//event.relatedTarget проверка чтобы при движении из консоли не вылетала ошибка
+		if (event.relatedTarget && event.relatedTarget.dataset.eventId && !event.target.dataset.eventId) {
+			document.querySelector('.js-vacation-table .calendar-event').remove()
+		}
+	})
+})
+employee.loadEmployee()
